@@ -6,6 +6,8 @@ TagManager:
   tags:
   - red_liquid
   - blue_liquid
+  - green_liquid
+  - green_interactable
   layers:
   - Default
   - TransparentFX

@@ -4,25 +4,36 @@ using UnityEngine.InputSystem;
 public class GazeCheck : MonoBehaviour
 {
     private InputAction m_rClickAction;
+    private InputAction m_lClickAction;
     public Transform cameraTransform;
     public Transform playerTransform;
     public BottleManager bottleManagerRef;
     public float checkDistance = 15f;
+    public float holdDistance = 15f;
+    public Rigidbody heldObjectRb = null;
+    public InputActionAsset InputActions;
+    public float holdForce = 300f;       // How hard the object is pulled toward the target
+    public float holdDamping = 20f;      // Resists movement to prevent jitter
+    public float maxHoldDistance = 2f;   // Prevent stretching too far
+
 
 
     private void Awake()
     {
         m_rClickAction = InputSystem.actions.FindAction("RightClick");
+        m_lClickAction = InputSystem.actions.FindAction("Click");
     }
 
     private void OnEnable()
     {
         m_rClickAction.Enable();
+        m_lClickAction.Enable();
     }
 
     private void OnDisable()
     {
         m_rClickAction.Disable();
+        m_lClickAction.Disable();
     }
 
     void Start()
@@ -49,7 +60,77 @@ public class GazeCheck : MonoBehaviour
                     bottleManagerRef.liquid = "blue";    
                     Debug.Log("Bottle manager set to blue.");
                 }
+                else if (hit.collider.CompareTag("green_liquid"))
+                {
+                    bottleManagerRef.liquid = "green";    
+                    Debug.Log("Bottle manager set to green.");
+                }
+                else if (hit.collider.CompareTag("green_interactable") && bottleManagerRef.liquid == "green")
+                {
+                    Rigidbody rb = hit.collider.attachedRigidbody;
+
+                    if (rb != null)
+                    {
+                        if(heldObjectRb != null)
+                        {
+                            heldObjectRb.useGravity = true;
+                            heldObjectRb.constraints = RigidbodyConstraints.None;
+                            heldObjectRb = null;
+                        }
+                        rb.constraints = RigidbodyConstraints.FreezeAll;
+                        Debug.Log("Object frozen: " + rb.gameObject.name);
+                        bottleManagerRef.liquid = null;
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Object has no Rigidbody to freeze!");
+                    }
+                }
             }
+        }
+        if(m_lClickAction.WasPressedThisFrame())
+        {
+
+            if (Physics.Raycast(playerTransform.position + new Vector3(0, 0.5f, 0), cameraTransform.forward, out hit, checkDistance))
+            {
+                if (heldObjectRb == null)
+                {
+
+            
+                    if (hit.collider.CompareTag("green_interactable"))
+                    {
+
+                
+                        heldObjectRb = hit.collider.attachedRigidbody;
+
+                        if (heldObjectRb != null)
+                        {
+                            heldObjectRb.useGravity = false;
+                            heldObjectRb.constraints = RigidbodyConstraints.FreezeRotation;
+                        }
+                    }
+                }
+                else
+                {
+                    heldObjectRb.useGravity = true;
+                    heldObjectRb.constraints = RigidbodyConstraints.None;
+                    heldObjectRb = null;
+                }
+            }
+        }
+        if (heldObjectRb != null)
+        {
+            Vector3 targetPos = playerTransform.position + new Vector3(0, 0.5f, 0) + cameraTransform.forward * 1.4f;
+            Vector3 toTarget = targetPos - heldObjectRb.position;
+
+            if (toTarget.magnitude > maxHoldDistance)
+                toTarget = toTarget.normalized * maxHoldDistance;
+
+            Vector3 force = toTarget * holdForce;
+
+            force -= heldObjectRb.linearVelocity * holdDamping;
+
+            heldObjectRb.AddForce(force, ForceMode.Acceleration);
         }
     }
 }
