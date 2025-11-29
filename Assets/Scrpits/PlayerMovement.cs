@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         float checkDistance = 0.53f;   // jak daleko szukać ziemi w dół
-        float offset = 0.5f;         // połowa szerokości obiektu (dla 1x1 ≈ 0.5, ale trochę mniej)
+        float offset = 0.25f;         // połowa szerokości obiektu (dla 1x1 ≈ 0.5, ale trochę mniej)
 
         Vector3 pos = transform.position;
 
