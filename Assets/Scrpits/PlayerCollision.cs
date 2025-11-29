@@ -1,16 +1,14 @@
 using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
-{
+{ public GameManager gameManager;
     public void OnCollisionEnter(Collision collisionInfo)
     {
-    /*    if (collisionInfo.collider.tag == "Ground")
+        if (collisionInfo.collider.tag == "Umieranko")
         {
-            GlobalVariables.ziemia = 1;
-        }*/
+            Debug.Log("lolol");
+            FindFirstObjectByType<GameManager>().EndGame();
+        }
     }
-    private void OnCollisionExit(Collision collisionInfo)
-    {
 
-    }
 }

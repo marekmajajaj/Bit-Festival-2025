@@ -1,15 +1,24 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using Unity.Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    void FixedUpdate()
+    bool gameHasEnded = false;
+    public void EndGame()
     {
+        if (gameHasEnded == false)
+        {
+            gameHasEnded = true;
+            Restart();
+        }
         
+    }
+
+    void Restart()
+    {
+        Debug.Log("Spawn");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
 
