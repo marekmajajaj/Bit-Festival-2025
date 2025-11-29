@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Ground
+  - red_liquid
+  - blue_liquid
   layers:
   - Default
   - TransparentFX
