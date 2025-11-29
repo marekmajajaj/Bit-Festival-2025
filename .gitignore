@@ -74,7 +74,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /Sztuka
-/Assets/Models/BrokenVector
-/Assets/Models/LowPolyOfficeProps_LITE
+/Assets/Models/BrokenVector/
+/Assets/Models/LowPolyOfficeProps_LITE/
 /Assets/Models/BrokenVector.meta
 /Assets/Models/LowPolyOfficeProps_LITE.meta
