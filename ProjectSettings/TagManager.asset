@@ -8,6 +8,9 @@ TagManager:
   - blue_liquid
   - green_liquid
   - green_interactable
+  - red_interactable
+  - previous
+  - future
   - Umieranko
   layers:
   - Default
@@ -19,8 +22,8 @@ TagManager:
   - 
   - Umieranko
   - 
-  - 
-  - 
+  - Ground
+  - Player
   - 
   - 
   - 

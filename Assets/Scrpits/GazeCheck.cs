@@ -90,6 +90,70 @@ public class GazeCheck : MonoBehaviour
                         Debug.LogWarning("Object has no Rigidbody to freeze!");
                     }
                 }
+                else if (hit.collider.CompareTag("red_interactable") && bottleManagerRef.liquid == "red")
+                {
+                    GameObject gameObj = hit.collider.gameObject;
+                    foreach (Transform child in gameObj.GetComponentsInChildren<Transform>(true))
+                    {
+                        if (child.CompareTag("future"))
+                        {
+                            MeshRenderer mr = child.GetComponent<MeshRenderer>();
+                            if (mr != null)
+                                mr.enabled = true;
+                            Collider col = child.GetComponent<Collider>();
+                            if (col != null)
+                                col.enabled = true;
+
+                            break;
+                        }
+                    }
+                    foreach (Transform child in gameObj.GetComponentsInChildren<Transform>(true))
+                    {
+                        if (child.CompareTag("previous"))
+                        {
+                            MeshRenderer mr = child.GetComponent<MeshRenderer>();
+                            if (mr != null)
+                                mr.enabled = false;
+                            Collider col = child.GetComponent<Collider>();
+                            if (col != null)
+                                col.enabled = false;
+
+                            break;
+                        }
+                    }
+                }
+                else if (hit.collider.CompareTag("red_interactable") && bottleManagerRef.liquid == "blue")
+                {
+                    GameObject gameObj = hit.collider.gameObject;
+                    foreach (Transform child in gameObj.GetComponentsInChildren<Transform>(true))
+                    {
+                        if (child.CompareTag("previous"))
+                        {
+                            MeshRenderer mr = child.GetComponent<MeshRenderer>();
+                            if (mr != null)
+                                mr.enabled = true;
+                            Collider col = child.GetComponent<Collider>();
+                            if (col != null)
+                                col.enabled = true;
+
+                            break;
+                        }
+                    }
+                    foreach (Transform child in gameObj.GetComponentsInChildren<Transform>(true))
+                    {
+                        if (child.CompareTag("future"))
+                        {
+                            MeshRenderer mr = child.GetComponent<MeshRenderer>();
+                            if (mr != null)
+                                mr.enabled = false;
+                            Collider col = child.GetComponent<Collider>();
+                            if (col != null)
+                                col.enabled = false;
+
+                            break;
+                        }
+                    }
+                }
             }
         }
         if(m_lClickAction.WasPressedThisFrame())
@@ -101,7 +165,7 @@ public class GazeCheck : MonoBehaviour
                 {
 
             
-                    if (hit.collider.CompareTag("green_interactable"))
+                    if (hit.collider.CompareTag("green_interactable") || hit.collider.CompareTag("red_interactable"))
                     {
 
                 
