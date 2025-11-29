@@ -67,6 +67,7 @@ public class GazeCheck : MonoBehaviour
                 }
                 else if (hit.collider.CompareTag("green_interactable") && bottleManagerRef.liquid == "green")
                 {
+                    GameObject gameObj = hit.collider.gameObject;
                     Rigidbody rb = hit.collider.attachedRigidbody;
                     Collider col = hit.collider;
 
@@ -77,11 +78,11 @@ public class GazeCheck : MonoBehaviour
                             heldObjectRb.useGravity = true;
                             heldObjectRb.constraints = RigidbodyConstraints.None;
                             heldObjectRb = null;
-                            Debug.Log("Sanity Check 2");
                             col.excludeLayers = LayerMask.GetMask("Nothing");
                         }
                         rb.constraints = RigidbodyConstraints.FreezeAll;
                         Debug.Log("Object frozen: " + rb.gameObject.name);
+                        gameObj.tag = "Untagged";
                         bottleManagerRef.liquid = null;
                     }
                     else
