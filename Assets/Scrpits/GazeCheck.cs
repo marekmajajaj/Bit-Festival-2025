@@ -8,12 +8,12 @@ public class GazeCheck : MonoBehaviour
     public Transform cameraTransform;
     public Transform playerTransform;
     public BottleManager bottleManagerRef;
-    public float checkDistance = 15f;
+    public float checkDistance = 1f;
     public float holdDistance = 15f;
     public Rigidbody heldObjectRb = null;
     public InputActionAsset InputActions;
-    public float holdForce = 300f;       // How hard the object is pulled toward the target
-    public float holdDamping = 20f;      // Resists movement to prevent jitter
+    public float holdForce = 4f;       // How hard the object is pulled toward the target
+    public float holdDamping = 1f;      // Resists movement to prevent jitter
     public float maxHoldDistance = 2f;   // Prevent stretching too far
 
 
