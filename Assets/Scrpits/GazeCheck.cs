@@ -67,7 +67,9 @@ public class GazeCheck : MonoBehaviour
                 }
                 else if (hit.collider.CompareTag("green_interactable") && bottleManagerRef.liquid == "green")
                 {
+                    GameObject gameObj = hit.collider.gameObject;
                     Rigidbody rb = hit.collider.attachedRigidbody;
+                    Collider col = hit.collider;
 
                     if (rb != null)
                     {
@@ -76,9 +78,11 @@ public class GazeCheck : MonoBehaviour
                             heldObjectRb.useGravity = true;
                             heldObjectRb.constraints = RigidbodyConstraints.None;
                             heldObjectRb = null;
+                            col.excludeLayers = LayerMask.GetMask("Nothing");
                         }
                         rb.constraints = RigidbodyConstraints.FreezeAll;
                         Debug.Log("Object frozen: " + rb.gameObject.name);
+                        gameObj.tag = "Untagged";
                         bottleManagerRef.liquid = null;
                     }
                     else
@@ -102,19 +106,24 @@ public class GazeCheck : MonoBehaviour
 
                 
                         heldObjectRb = hit.collider.attachedRigidbody;
+                        Collider col = hit.collider;
 
                         if (heldObjectRb != null)
                         {
                             heldObjectRb.useGravity = false;
                             heldObjectRb.constraints = RigidbodyConstraints.FreezeRotation;
+                            col.excludeLayers = LayerMask.NameToLayer("Player");
                         }
                     }
                 }
                 else
                 {
+                    Collider col = hit.collider;
                     heldObjectRb.useGravity = true;
                     heldObjectRb.constraints = RigidbodyConstraints.None;
                     heldObjectRb = null;
+                    Debug.Log("Sanity Check");
+                    col.excludeLayers = LayerMask.GetMask("Nothing");
                 }
             }
         }
