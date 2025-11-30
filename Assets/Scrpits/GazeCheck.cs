@@ -17,9 +17,9 @@ public class GazeCheck : MonoBehaviour
     public float holdForce = 4f;       // How hard the object is pulled toward the target
     public float holdDamping = 1f;      // Resists movement to prevent jitter
     public float maxHoldDistance = 2f;   // Prevent stretching too far
-    private float holdStart;
-    private bool holdingRed;
-    private bool holdingBlue;
+    public float holdStart;
+    public bool holdingRed;
+    public bool holdingBlue;
 
 
 
@@ -144,6 +144,7 @@ public class GazeCheck : MonoBehaviour
                 else if(bottleManagerRef.liquid == "red")
                 {
                     holdStart = Time.time;
+                    Debug.Log("Started holding red bottle.");
                     holdingRed = true;
                 }
                 else if(bottleManagerRef.liquid == "blue")
@@ -153,21 +154,26 @@ public class GazeCheck : MonoBehaviour
                 }
             }
         }
-        if (holdingBlue && m_rClickAction.WasReleasedThisFrame())
+        if (m_rClickAction.WasReleasedThisFrame())
         {       
-            holdingBlue = false;
-            float held = Time.time - holdStart;
+            if(holdingBlue)
+            {
+                holdingBlue = false;
+                float held = Time.time - holdStart;
 
-            if (held >= 2f)
-                Debug.Log("Held for a second!");
-        }
-        else if (holdingRed && m_rClickAction.WasReleasedThisFrame())
-        {       
-            holdingRed = false;
-            float held = Time.time - holdStart;
+                if (held >= 2f)
+                    if(sizeCommanderRef.playerAge < 2)
+                        sizeCommanderRef.playerAge =+ 1;
+            }
+            else if(holdingRed)
+            {
+                holdingRed = false;
+                float held = Time.time - holdStart;
 
-            if (held >= 2f)
-                Debug.Log("Held for a second!");
+                if (held >= 2f)
+                    if(sizeCommanderRef.playerAge > 0)
+                        sizeCommanderRef.playerAge =- 1;
+            }
         }
         if(m_lClickAction.WasPressedThisFrame())
         {
