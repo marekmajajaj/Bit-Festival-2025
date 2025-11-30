@@ -89,6 +89,7 @@ public class GazeCheck : MonoBehaviour
                         Debug.Log("Object frozen: " + rb.gameObject.name);
                         gameObj.tag = "Untagged";
                         bottleManagerRef.liquid = null;
+                        Debug.Log("Bottle1");
                     }
                     else
                     {
@@ -116,6 +117,7 @@ public class GazeCheck : MonoBehaviour
                             break;
                         }
                     }
+                    Debug.Log("Bottle2");
                     bottleManagerRef.liquid = null;
                 }
                 else if (hit.collider.CompareTag("red_interactable") && bottleManagerRef.liquid == "blue")
@@ -139,6 +141,7 @@ public class GazeCheck : MonoBehaviour
                             break;
                         }
                     }
+                    Debug.Log("Bottle3");
                     bottleManagerRef.liquid = null;
                 }
             }
@@ -162,11 +165,14 @@ public class GazeCheck : MonoBehaviour
                 float held = Time.time - holdStart;
 
                 if (held >= 2f)
+                {
                     if(sizeCommanderRef.playerAge == 2)
                         sizeCommanderRef.playerAge = 1;
                     else if(sizeCommanderRef.playerAge == 1)
                         sizeCommanderRef.playerAge = 0;
+                    Debug.Log("Bottle4");
                     bottleManagerRef.liquid = null;
+                }
             }
             else if(holdingRed)
             {
@@ -174,11 +180,14 @@ public class GazeCheck : MonoBehaviour
                 float held = Time.time - holdStart;
 
                 if (held >= 2f)
+                {
                     if(sizeCommanderRef.playerAge == 0)
                         sizeCommanderRef.playerAge = 1;
                     else if(sizeCommanderRef.playerAge == 1)
                         sizeCommanderRef.playerAge = 2;
+                    Debug.Log("Bottle5");
                     bottleManagerRef.liquid = null;
+                }
             }
         }
         if(m_lClickAction.WasPressedThisFrame())
