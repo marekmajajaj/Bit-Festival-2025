@@ -141,17 +141,17 @@ public class GazeCheck : MonoBehaviour
                     }
                     bottleManagerRef.liquid = null;
                 }
-                else if(bottleManagerRef.liquid == "red")
-                {
-                    holdStart = Time.time;
-                    Debug.Log("Started holding red bottle.");
-                    holdingRed = true;
-                }
-                else if(bottleManagerRef.liquid == "blue")
-                {
-                    holdStart = Time.time;
-                    holdingBlue = true;
-                }
+            }
+            else if(bottleManagerRef.liquid == "red")
+            {
+                holdStart = Time.time;
+                Debug.Log("Started holding red bottle.");                    
+                holdingRed = true;
+            }
+            else if(bottleManagerRef.liquid == "blue")
+            {
+                holdStart = Time.time;
+                holdingBlue = true;
             }
         }
         if (m_rClickAction.WasReleasedThisFrame())
@@ -162,8 +162,11 @@ public class GazeCheck : MonoBehaviour
                 float held = Time.time - holdStart;
 
                 if (held >= 2f)
-                    if(sizeCommanderRef.playerAge < 2)
-                        sizeCommanderRef.playerAge =+ 1;
+                    if(sizeCommanderRef.playerAge == 2)
+                        sizeCommanderRef.playerAge = 1;
+                    else if(sizeCommanderRef.playerAge == 1)
+                        sizeCommanderRef.playerAge = 0;
+                    bottleManagerRef.liquid = null;
             }
             else if(holdingRed)
             {
@@ -171,8 +174,11 @@ public class GazeCheck : MonoBehaviour
                 float held = Time.time - holdStart;
 
                 if (held >= 2f)
-                    if(sizeCommanderRef.playerAge > 0)
-                        sizeCommanderRef.playerAge =- 1;
+                    if(sizeCommanderRef.playerAge == 0)
+                        sizeCommanderRef.playerAge = 1;
+                    else if(sizeCommanderRef.playerAge == 1)
+                        sizeCommanderRef.playerAge = 2;
+                    bottleManagerRef.liquid = null;
             }
         }
         if(m_lClickAction.WasPressedThisFrame())
