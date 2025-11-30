@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
         float angle = Vector3.Angle(transform.forward, camForward);
 
         // Jeżeli kamera nie jest za bardzo z boku (np. kąt < 80 stopni)
-        if (angle < 80f)
+        if (angle < 210f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(camForward);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotateSpeed * Time.deltaTime);
