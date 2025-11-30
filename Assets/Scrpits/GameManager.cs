@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     bool gameHasEnded = false;
+
+    void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
     public void EndGame()
     {
         if (gameHasEnded == false)
