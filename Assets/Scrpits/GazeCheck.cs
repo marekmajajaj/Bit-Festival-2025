@@ -145,7 +145,7 @@ public class GazeCheck : MonoBehaviour
                     bottleManagerRef.liquid = null;
                 }
             }
-            else if(bottleManagerRef.liquid == "red")
+            if(bottleManagerRef.liquid == "red")
             {
                 holdStart = Time.time;
                 Debug.Log("Started holding red bottle.");                    
@@ -154,6 +154,7 @@ public class GazeCheck : MonoBehaviour
             else if(bottleManagerRef.liquid == "blue")
             {
                 holdStart = Time.time;
+                Debug.Log("Started holding blue bottle.");
                 holdingBlue = true;
             }
         }

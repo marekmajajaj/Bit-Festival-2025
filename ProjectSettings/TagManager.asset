@@ -12,6 +12,7 @@ TagManager:
   - previous
   - future
   - Umieranko
+  - barrel
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,6 @@ TagManager:
   - 
   - Ground
   - Player
-  - 
   - 
   - 
   - 
