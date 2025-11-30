@@ -103,17 +103,7 @@ public class GazeCheck : MonoBehaviour
                     {
                         if (child.CompareTag("future"))
                         {
-<<<<<<< Updated upstream
                             child.gameObject.SetActive(true);
-=======
-                            MeshRenderer mr = child.GetComponent<MeshRenderer>();
-                            if (mr != null)
-                                mr.enabled = true;
-                            Collider col = child.GetComponent<Collider>();
-                            if (col != null)
-                                col.enabled = true;
->>>>>>> Stashed changes
-
                             break;
                         }
                     }
@@ -121,25 +111,12 @@ public class GazeCheck : MonoBehaviour
                     {
                         if (child.CompareTag("previous"))
                         {
-<<<<<<< Updated upstream
                             child.gameObject.SetActive(false);
-=======
-                            MeshRenderer mr = child.GetComponent<MeshRenderer>();
-                            if (mr != null)
-                                mr.enabled = false;
-                            Collider col = child.GetComponent<Collider>();
-                            if (col != null)
-                                col.enabled = false;
->>>>>>> Stashed changes
-
                             break;
                         }
                     }
-<<<<<<< Updated upstream
-                    Debug.Log("Bottle2");
                     bottleManagerRef.liquid = null;
-=======
->>>>>>> Stashed changes
+
                 }
                 else if (hit.collider.CompareTag("red_interactable") && bottleManagerRef.liquid == "blue")
                 {
@@ -148,17 +125,7 @@ public class GazeCheck : MonoBehaviour
                     {
                         if (child.CompareTag("previous"))
                         {
-<<<<<<< Updated upstream
                             child.gameObject.SetActive(true);
-=======
-                            MeshRenderer mr = child.GetComponent<MeshRenderer>();
-                            if (mr != null)
-                                mr.enabled = true;
-                            Collider col = child.GetComponent<Collider>();
-                            if (col != null)
-                                col.enabled = true;
->>>>>>> Stashed changes
-
                             break;
                         }
                     }
@@ -166,21 +133,10 @@ public class GazeCheck : MonoBehaviour
                     {
                         if (child.CompareTag("future"))
                         {
-<<<<<<< Updated upstream
                             child.gameObject.SetActive(false);
-=======
-                            MeshRenderer mr = child.GetComponent<MeshRenderer>();
-                            if (mr != null)
-                                mr.enabled = false;
-                            Collider col = child.GetComponent<Collider>();
-                            if (col != null)
-                                col.enabled = false;
->>>>>>> Stashed changes
-
                             break;
                         }
                     }
-<<<<<<< Updated upstream
                     Debug.Log("Bottle3");
                     bottleManagerRef.liquid = null;
                 }
@@ -224,8 +180,6 @@ public class GazeCheck : MonoBehaviour
                         sizeCommanderRef.playerAge = 1;
                     Debug.Log("Bottle5");
                     bottleManagerRef.liquid = null;
-=======
->>>>>>> Stashed changes
                 }
             }
         }
@@ -236,13 +190,8 @@ public class GazeCheck : MonoBehaviour
                 {
                 if (Physics.Raycast(playerTransform.position + new Vector3(0, 0.5f, 0), cameraTransform.forward, out hit, checkDistance))
                     {
-
-<<<<<<< Updated upstream
-=======
-            
->>>>>>> Stashed changes
-                    if (hit.collider.CompareTag("green_interactable") || hit.collider.CompareTag("red_interactable"))
-                    {
+                        if (hit.collider.CompareTag("green_interactable") || hit.collider.CompareTag("red_interactable"))
+                        {
 
                 
                         heldObjectRb = hit.collider.attachedRigidbody;
