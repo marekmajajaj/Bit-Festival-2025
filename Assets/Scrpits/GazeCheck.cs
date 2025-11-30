@@ -8,6 +8,7 @@ public class GazeCheck : MonoBehaviour
     public Transform cameraTransform;
     public Transform playerTransform;
     public BottleManager bottleManagerRef;
+    public PlayerSizeCommander sizeCommanderRef;
     public float checkDistance = 1f;
     public float holdDistance = 15f;
     public Rigidbody heldObjectRb = null;
@@ -16,6 +17,9 @@ public class GazeCheck : MonoBehaviour
     public float holdForce = 4f;       // How hard the object is pulled toward the target
     public float holdDamping = 1f;      // Resists movement to prevent jitter
     public float maxHoldDistance = 2f;   // Prevent stretching too far
+    private float holdStart;
+    private bool holdingRed;
+    private bool holdingBlue;
 
 
 
@@ -98,12 +102,7 @@ public class GazeCheck : MonoBehaviour
                     {
                         if (child.CompareTag("future"))
                         {
-                            MeshRenderer mr = child.GetComponent<MeshRenderer>();
-                            if (mr != null)
-                                mr.enabled = true;
-                            Collider col = child.GetComponent<Collider>();
-                            if (col != null)
-                                col.enabled = true;
+                            child.gameObject.SetActive(true);
 
                             break;
                         }
@@ -112,16 +111,12 @@ public class GazeCheck : MonoBehaviour
                     {
                         if (child.CompareTag("previous"))
                         {
-                            MeshRenderer mr = child.GetComponent<MeshRenderer>();
-                            if (mr != null)
-                                mr.enabled = false;
-                            Collider col = child.GetComponent<Collider>();
-                            if (col != null)
-                                col.enabled = false;
+                            child.gameObject.SetActive(false);
 
                             break;
                         }
                     }
+                    bottleManagerRef.liquid = null;
                 }
                 else if (hit.collider.CompareTag("red_interactable") && bottleManagerRef.liquid == "blue")
                 {
@@ -130,12 +125,7 @@ public class GazeCheck : MonoBehaviour
                     {
                         if (child.CompareTag("previous"))
                         {
-                            MeshRenderer mr = child.GetComponent<MeshRenderer>();
-                            if (mr != null)
-                                mr.enabled = true;
-                            Collider col = child.GetComponent<Collider>();
-                            if (col != null)
-                                col.enabled = true;
+                            child.gameObject.SetActive(true);
 
                             break;
                         }
@@ -144,18 +134,40 @@ public class GazeCheck : MonoBehaviour
                     {
                         if (child.CompareTag("future"))
                         {
-                            MeshRenderer mr = child.GetComponent<MeshRenderer>();
-                            if (mr != null)
-                                mr.enabled = false;
-                            Collider col = child.GetComponent<Collider>();
-                            if (col != null)
-                                col.enabled = false;
+                            child.gameObject.SetActive(false);
 
                             break;
                         }
                     }
+                    bottleManagerRef.liquid = null;
+                }
+                else if(bottleManagerRef.liquid == "red")
+                {
+                    holdStart = Time.time;
+                    holdingRed = true;
+                }
+                else if(bottleManagerRef.liquid == "blue")
+                {
+                    holdStart = Time.time;
+                    holdingBlue = true;
                 }
             }
+        }
+        if (holdingBlue && m_rClickAction.WasReleasedThisFrame())
+        {       
+            holdingBlue = false;
+            float held = Time.time - holdStart;
+
+            if (held >= 2f)
+                Debug.Log("Held for a second!");
+        }
+        else if (holdingRed && m_rClickAction.WasReleasedThisFrame())
+        {       
+            holdingRed = false;
+            float held = Time.time - holdStart;
+
+            if (held >= 2f)
+                Debug.Log("Held for a second!");
         }
         if(m_lClickAction.WasPressedThisFrame())
         {
