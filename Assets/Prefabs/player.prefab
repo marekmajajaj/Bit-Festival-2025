@@ -272,31 +272,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5627726156914678728, guid: dd47ac4856d171646b032117b7525f35, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3289416
+      value: -0.79524136
       objectReference: {fileID: 0}
     - target: {fileID: 5627726156914678728, guid: dd47ac4856d171646b032117b7525f35, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.61337924
+      value: 4.7944784
       objectReference: {fileID: 0}
     - target: {fileID: 5627726156914678728, guid: dd47ac4856d171646b032117b7525f35, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.40654987
+      value: 2.4836533
       objectReference: {fileID: 0}
     - target: {fileID: 5627726156914678728, guid: dd47ac4856d171646b032117b7525f35, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.59246147
+      value: 0.13596176
       objectReference: {fileID: 0}
     - target: {fileID: 5627726156914678728, guid: dd47ac4856d171646b032117b7525f35, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.052161217
+      value: 0.07299782
       objectReference: {fileID: 0}
     - target: {fileID: 5627726156914678728, guid: dd47ac4856d171646b032117b7525f35, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8008107
+      value: 0.87049097
       objectReference: {fileID: 0}
     - target: {fileID: 5627726156914678728, guid: dd47ac4856d171646b032117b7525f35, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0705046
+      value: -0.4673663
+      objectReference: {fileID: 0}
+    - target: {fileID: 5731014310711024201, guid: dd47ac4856d171646b032117b7525f35, type: 3}
+      propertyPath: JumpHaja
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5834343087324059680, guid: dd47ac4856d171646b032117b7525f35, type: 3}
       propertyPath: Orbits.Top.Height
@@ -336,7 +340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7111591320914338161, guid: dd47ac4856d171646b032117b7525f35, type: 3}
       propertyPath: field of view
-      value: 60
+      value: 30.000002
       objectReference: {fileID: 0}
     - target: {fileID: 7569471115528263282, guid: dd47ac4856d171646b032117b7525f35, type: 3}
       propertyPath: m_Layer
