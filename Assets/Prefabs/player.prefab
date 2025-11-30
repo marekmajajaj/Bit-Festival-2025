@@ -187,6 +187,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3360418147230972453, guid: dd47ac4856d171646b032117b7525f35, type: 3}
+      propertyPath: sizeCommanderRef
+      value: 
+      objectReference: {fileID: 8834484156560881366}
+    - target: {fileID: 3360418147230972453, guid: dd47ac4856d171646b032117b7525f35, type: 3}
       propertyPath: m_lClickAction.m_Name
       value: L Click
       objectReference: {fileID: 0}
@@ -368,8 +372,42 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2844999202520439631, guid: dd47ac4856d171646b032117b7525f35, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5678987626797506638}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6463134900770061210, guid: dd47ac4856d171646b032117b7525f35, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8834484156560881366}
   m_SourcePrefab: {fileID: 100100000, guid: dd47ac4856d171646b032117b7525f35, type: 3}
+--- !u!114 &369195270080425276 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5731014310711024201, guid: dd47ac4856d171646b032117b7525f35, type: 3}
+  m_PrefabInstance: {fileID: 5374766890545166197}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379976086371011823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee51bdc50790ab04ca9c89fef8f09e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1379976086371011823 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6463134900770061210, guid: dd47ac4856d171646b032117b7525f35, type: 3}
+  m_PrefabInstance: {fileID: 5374766890545166197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8834484156560881366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379976086371011823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be43c135e97d84c4da2b39e91f69658a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovementRef: {fileID: 369195270080425276}
+  playerAge: 1
+  prevPlayerAge: 0
 --- !u!4 &7920835248143313978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2844999202520439631, guid: dd47ac4856d171646b032117b7525f35, type: 3}
