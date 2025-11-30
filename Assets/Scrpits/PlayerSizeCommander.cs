@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerSizeCommander : MonoBehaviour
 {
-    public int playerAge = 1; // 0 = small, 1 = medium, 2 = large
+    public  PlayerMovement playerMovementRef;
+    public int playerAge = 1; // 0 = small, 1 = medium
     public int prevPlayerAge;
     void Start()
     {
@@ -20,14 +21,12 @@ public class PlayerSizeCommander : MonoBehaviour
             {
                 case 0:
                     transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    playerMovementRef.JumpHaja = 4f;
                     break;
 
                 case 1:
                     transform.localScale = new Vector3(1f, 1f, 1f);
-                    break;
-
-                case 2:
-                    transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+                    playerMovementRef.JumpHaja = 5f;
                     break;
 
                 default:

@@ -167,9 +167,7 @@ public class GazeCheck : MonoBehaviour
 
                 if (held >= 2f)
                 {
-                    if(sizeCommanderRef.playerAge == 2)
-                        sizeCommanderRef.playerAge = 1;
-                    else if(sizeCommanderRef.playerAge == 1)
+                    if(sizeCommanderRef.playerAge == 1)
                         sizeCommanderRef.playerAge = 0;
                     Debug.Log("Bottle4");
                     bottleManagerRef.liquid = null;
@@ -184,8 +182,6 @@ public class GazeCheck : MonoBehaviour
                 {
                     if(sizeCommanderRef.playerAge == 0)
                         sizeCommanderRef.playerAge = 1;
-                    else if(sizeCommanderRef.playerAge == 1)
-                        sizeCommanderRef.playerAge = 2;
                     Debug.Log("Bottle5");
                     bottleManagerRef.liquid = null;
                 }
