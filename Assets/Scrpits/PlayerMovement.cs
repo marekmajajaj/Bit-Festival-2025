@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float JumpSpeed = 5;
     public float offsetCzasu = 0.3f;
     public float JumpTime = 0;
-
+    public float JumpHaja = 5f;
     private void OnEnable()
     {
         m_moveAction.Enable();
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        m_rigidbody.AddForceAtPosition(new Vector3(0, 5f, 0), Vector3.up, ForceMode.Impulse);
+        m_rigidbody.AddForceAtPosition(new Vector3(0, JumpHaja, 0), Vector3.up, ForceMode.Impulse);
     }
     private void FixedUpdate()
     {
