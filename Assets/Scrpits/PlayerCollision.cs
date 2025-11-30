@@ -9,11 +9,6 @@ public class PlayerCollision : MonoBehaviour
             Debug.Log("lolol");
             FindFirstObjectByType<GameManager>().EndGame();
         }
-        if (collisionInfo.collider.tag == "Zycka")
-        {
-            Debug.Log("lolol");
-            FindFirstObjectByType<GameManager>().EndGame();
-        }
     }
 
 }

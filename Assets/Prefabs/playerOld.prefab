@@ -883,9 +883,8 @@ GameObject:
   - component: {fileID: 3210467391891033424}
   - component: {fileID: 8281882626294144884}
   - component: {fileID: 5731014310711024201}
-  - component: {fileID: -6736988359981921990}
   m_Layer: 0
-  m_Name: player 1
+  m_Name: playerOld
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -993,6 +992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d8e8b0af7e55548addf1f63674916d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!114 &3360418147230972453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,7 +1008,18 @@ MonoBehaviour:
   cameraTransform: {fileID: 5627726156914678728}
   playerTransform: {fileID: 2844999202520439631}
   bottleManagerRef: {fileID: 3210467391891033424}
+  sizeCommanderRef: {fileID: 0}
   checkDistance: 5
+  holdDistance: 15
+  heldObjectRb: {fileID: 0}
+  heldcollider: {fileID: 0}
+  InputActions: {fileID: 0}
+  holdForce: 4
+  holdDamping: 1
+  maxHoldDistance: 2
+  holdStart: 0
+  holdingRed: 0
+  holdingBlue: 0
 --- !u!114 &3210467391891033424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1021,7 +1032,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dbb3d1ad39a3045b7c015e95f872cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  matE: {fileID: 0}
+  matR: {fileID: 0}
+  matG: {fileID: 0}
+  matB: {fileID: 0}
   liquid: 
+  prevLiquid: 
 --- !u!65 &8281882626294144884
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1062,36 +1078,7 @@ MonoBehaviour:
   JumpSpeed: 5
   offsetCzasu: 0.3
   JumpTime: 0
---- !u!114 &-6736988359981921990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6463134900770061210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca7de3aefa901374ba29464584a3109a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CameraRadius: 0.4
-  Decollision:
-    Enabled: 0
-    ObstacleLayers:
-      serializedVersion: 2
-      m_Bits: 1
-    UseFollowTarget:
-      Enabled: 0
-      YOffset: 0
-    Damping: 0.5
-    SmoothingTime: 0
-  TerrainResolution:
-    Enabled: 1
-    TerrainLayers:
-      serializedVersion: 2
-      m_Bits: 1
-    MaximumRaycast: 10
-    Damping: 0.5
+  JumpHaja: 5
 --- !u!1 &7018407151282637068
 GameObject:
   m_ObjectHideFlags: 0

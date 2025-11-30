@@ -95,19 +95,25 @@ public class PlayerMovement : MonoBehaviour
     }
     private void RotatePlayerToCamera()
     {
-        // Bierzemy kierunek, w którym patrzy kamera (poziomo)
         Vector3 camForward = Camera.main.transform.forward;
         camForward.y = 0;
         camForward.Normalize();
 
-        Quaternion targetRotation = Quaternion.LookRotation(camForward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotateSpeed * Time.deltaTime);
+        // Kąt między patrzeniem gracza a kamerą
+        float angle = Vector3.Angle(transform.forward, camForward);
+
+        // Jeżeli kamera nie jest za bardzo z boku (np. kąt < 80 stopni)
+        if (angle < 80f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(camForward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotateSpeed * Time.deltaTime);
+        }
     }
 
     private bool IsGrounded()
     {
-        float checkDistance = 0.51f;   // jak daleko szukać ziemi w dół
-        float offset = 0.5f;         // połowa szerokości obiektu (dla 1x1 ≈ 0.5, ale trochę mniej)
+        float checkDistance = 0.76f;   // jak daleko szukać ziemi w dół
+        float offset = 0.23f;        
 
         Vector3 pos = transform.position;
 
