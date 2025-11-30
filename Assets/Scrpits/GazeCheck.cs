@@ -11,6 +11,7 @@ public class GazeCheck : MonoBehaviour
     public float checkDistance = 1f;
     public float holdDistance = 15f;
     public Rigidbody heldObjectRb = null;
+    public Collider heldcollider = null;
     public InputActionAsset InputActions;
     public float holdForce = 4f;       // How hard the object is pulled toward the target
     public float holdDamping = 1f;      // Resists movement to prevent jitter
@@ -69,7 +70,6 @@ public class GazeCheck : MonoBehaviour
                 {
                     GameObject gameObj = hit.collider.gameObject;
                     Rigidbody rb = hit.collider.attachedRigidbody;
-                    Collider col = hit.collider;
 
                     if (rb != null)
                     {
@@ -78,7 +78,8 @@ public class GazeCheck : MonoBehaviour
                             heldObjectRb.useGravity = true;
                             heldObjectRb.constraints = RigidbodyConstraints.None;
                             heldObjectRb = null;
-                            col.excludeLayers = LayerMask.GetMask("Nothing");
+                            heldcollider.excludeLayers = LayerMask.GetMask("Nothing");
+                            heldcollider = null;
                         }
                         rb.constraints = RigidbodyConstraints.FreezeAll;
                         Debug.Log("Object frozen: " + rb.gameObject.name);
@@ -159,36 +160,36 @@ public class GazeCheck : MonoBehaviour
         if(m_lClickAction.WasPressedThisFrame())
         {
 
-            if (Physics.Raycast(playerTransform.position + new Vector3(0, 0.5f, 0), cameraTransform.forward, out hit, checkDistance))
-            {
-                if (heldObjectRb == null)
+            if (heldObjectRb == null)
                 {
+                if (Physics.Raycast(playerTransform.position + new Vector3(0, 0.5f, 0), cameraTransform.forward, out hit, checkDistance))
+                    {
 
-            
                     if (hit.collider.CompareTag("green_interactable") || hit.collider.CompareTag("red_interactable"))
                     {
 
                 
                         heldObjectRb = hit.collider.attachedRigidbody;
-                        Collider col = hit.collider;
+                        heldcollider = hit.collider;
 
                         if (heldObjectRb != null)
                         {
                             heldObjectRb.useGravity = false;
                             heldObjectRb.constraints = RigidbodyConstraints.FreezeRotation;
-                            col.excludeLayers = LayerMask.NameToLayer("Player");
+                            if(hit.collider.CompareTag("green_interactable"))
+                                heldcollider.excludeLayers = LayerMask.NameToLayer("Player");
                         }
                     }
                 }
-                else
-                {
-                    Collider col = hit.collider;
-                    heldObjectRb.useGravity = true;
-                    heldObjectRb.constraints = RigidbodyConstraints.None;
-                    heldObjectRb = null;
-                    Debug.Log("Sanity Check");
-                    col.excludeLayers = LayerMask.GetMask("Nothing");
-                }
+            }
+            else
+            {
+                heldObjectRb.useGravity = true;
+                heldObjectRb.constraints = RigidbodyConstraints.None;
+                heldObjectRb = null;
+                Debug.Log("Sanity Check");                    
+                heldcollider.excludeLayers = LayerMask.GetMask("Nothing");
+                heldcollider = null;
             }
         }
         if (heldObjectRb != null)
