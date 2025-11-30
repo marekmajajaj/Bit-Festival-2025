@@ -100,8 +100,8 @@ public class PlayerMovement : MonoBehaviour
         camForward.y = 0;
         camForward.Normalize();
 
-         Quaternion targetRotation = Quaternion.LookRotation(camForward);
-         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotateSpeed * Time.deltaTime);
+        Quaternion targetRotation = Quaternion.LookRotation(camForward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotateSpeed * Time.deltaTime);
     }
 
     private bool IsGrounded()
